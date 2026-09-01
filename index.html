@@ -32,6 +32,113 @@
   section{padding:100px 0;}
   .dash{width:46px;height:3px;background:var(--accent);border-radius:2px;}
 
+  /* ---------- INTRO OVERLAY ---------- */
+  body.locked{overflow:hidden;height:100vh;}
+  #intro{
+    position:fixed;inset:0;z-index:200;
+    background:#fdfdfc;
+    display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:28px;
+    transition:transform .9s cubic-bezier(.65,0,.35,1), opacity .6s ease .3s;
+    overflow:hidden;
+  }
+  #intro::before{
+    content:'';position:absolute;inset:-15%;pointer-events:none;
+    background:
+      radial-gradient(circle at 18% 22%, var(--accent) 0%, transparent 42%),
+      radial-gradient(circle at 82% 18%, #17242f 0%, transparent 44%),
+      radial-gradient(circle at 50% 92%, var(--accent-dark) 0%, transparent 46%);
+    filter:blur(90px);
+    opacity:.22;
+  }
+  #intro.leave{transform:translateY(-100%);}
+  #intro .skip{
+    position:absolute;bottom:26px;right:28px;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gray);
+    background:transparent;border:1px solid var(--line);
+    padding:7px 13px;border-radius:100px;cursor:pointer;
+    transition:border-color .2s ease, color .2s ease;
+    z-index:2;
+  }
+  #intro .skip:hover{color:var(--ink);border-color:var(--ink);}
+
+  .laptop{width:560px;max-width:90vw;position:relative;z-index:1;}
+  .laptop-screen{background:linear-gradient(155deg,#22323f,var(--ink));border-radius:22px 22px 8px 8px;padding:16px 16px 22px;box-shadow:0 50px 90px -30px rgba(23,36,47,0.45);}
+  .laptop-cam{width:6px;height:6px;border-radius:50%;background:#3d5361;margin:0 auto 12px;}
+  .laptop-display{border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#eef1ef;}
+  .laptop-base{height:14px;margin:0 -8px;background:linear-gradient(#e4e8e9,#c9d0d2);border-radius:0 0 12px 12px;position:relative;}
+  .laptop-base::after{content:'';position:absolute;left:50%;top:0;transform:translateX(-50%);width:80px;height:5px;background:#b3bcbe;border-radius:0 0 6px 6px;}
+  .laptop-shadow{width:78%;height:22px;margin:10px auto 0;background:radial-gradient(ellipse, rgba(23,36,47,0.22), transparent 72%);}
+
+  .map-frame{width:100%;height:340px;position:relative;background:#eef1ef;}
+  .map-block{position:absolute;background:#e0e6e3;}
+  .map-block.b1{top:0;left:0;width:55%;height:42%;}
+  .map-block.b2{top:0;right:0;width:38%;height:60%;background:#e6ebe6;}
+  .map-block.b3{bottom:0;left:8%;width:40%;height:38%;background:#e4e9e5;}
+  .map-road{position:absolute;background:#fbfcfa;}
+  .map-road.r1{top:0;bottom:0;left:52%;width:12px;transform:skewX(-8deg);}
+  .map-road.r2{left:0;right:0;top:40%;height:10px;}
+  .map-road.r3{left:0;right:0;bottom:36%;height:8px;}
+
+  .map-pin{position:absolute;left:50%;top:38%;width:40px;height:52px;margin-left:-20px;margin-top:-70px;transform-origin:50% 100%;opacity:0;}
+  .map-pin.drop{animation:pin-drop .62s cubic-bezier(.34,1.56,.64,1) forwards;}
+  @keyframes pin-drop{
+    0%{opacity:0;transform:translateY(-90px) scale(.7);}
+    60%{opacity:1;transform:translateY(6px) scale(1.06);}
+    80%{transform:translateY(-4px) scale(.98);}
+    100%{opacity:1;transform:translateY(0) scale(1);}
+  }
+  .map-pin-shadow{position:absolute;left:50%;bottom:20px;width:0;height:7px;margin-left:-1px;background:rgba(23,36,47,0.22);border-radius:50%;transition:width .3s ease, margin-left .3s ease;}
+  .map-pin-shadow.show{width:24px;margin-left:-12px;}
+
+  .listing-card{
+    position:absolute;left:24px;right:24px;bottom:22px;
+    background:rgba(255,255,255,0.96);backdrop-filter:blur(6px);
+    border-radius:16px;padding:20px 22px;
+    box-shadow:0 14px 36px -14px rgba(23,36,47,0.28);
+    transform:translateY(130%);
+    transition:transform .5s cubic-bezier(.34,1.2,.64,1);
+  }
+  .listing-card.show{transform:translateY(0);}
+  .listing-name{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:20px;color:var(--ink);min-height:25px;}
+  .listing-stars{display:flex;gap:3px;margin:8px 0 8px;}
+  .listing-stars svg{width:16px;height:16px;fill:rgba(23,36,47,0.15);transition:fill .18s ease;}
+  .listing-stars svg.filled{fill:var(--accent);}
+  .listing-meta{font-size:13px;color:var(--gray);margin-bottom:13px;}
+  .listing-btn{
+    display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;
+    color:var(--accent-dark);border:1px solid rgba(79,157,176,0.35);background:var(--accent-tint);
+    padding:7px 15px;border-radius:100px;opacity:0;transform:scale(.9);
+    transition:opacity .35s ease, transform .35s ease;
+  }
+  .listing-btn.show{opacity:1;transform:scale(1);}
+
+  .intro-caption{text-align:center;position:relative;z-index:1;}
+  .intro-caption p{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--gray);min-height:20px;letter-spacing:.01em;line-height:1.7;}
+  .intro-caption p#captionLine1{color:var(--ink);font-size:16px;}
+  .intro-caption .cursor{display:inline-block;width:7px;height:14px;background:var(--accent);vertical-align:-2px;margin-left:2px;animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  .intro-cta{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:15px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;border:none;
+    padding:14px 28px;border-radius:100px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:8px;position:relative;z-index:1;
+    opacity:0;transform:translateY(8px) scale(.97);pointer-events:none;
+    transition:opacity .5s ease, transform .5s ease, filter .2s ease;
+  }
+  .intro-cta.ready{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;animation:cta-pulse 2.2s ease-in-out .6s infinite;}
+  .intro-cta:hover{filter:brightness(1.08);}
+  @keyframes cta-pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(79,157,176,0.35);}
+    50%{box-shadow:0 0 0 12px rgba(79,157,176,0);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    #intro{display:none;}
+    body.locked{overflow:auto;height:auto;}
+  }
+
   /* ---------- NAV ---------- */
   header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
   nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1180px;margin:0 auto;}
@@ -178,10 +285,80 @@
   @media (max-width:640px){
     section{padding:70px 0;}
     .cta-section{margin:0 16px;padding:48px 26px;}
+  }  .whatsapp-fab{
+    position:fixed;bottom:26px;right:26px;z-index:60;
+    width:58px;height:58px;border-radius:50%;
+    background:#25d366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 28px -8px rgba(37,211,102,0.55);
+    transition:transform .2s ease, box-shadow .2s ease;
+    animation:wa-pulse 2.4s ease-in-out infinite;
   }
+  .whatsapp-fab:hover{transform:scale(1.08);box-shadow:0 16px 34px -8px rgba(37,211,102,0.65);}
+  .whatsapp-fab svg{width:29px;height:29px;}
+  @keyframes wa-pulse{
+    0%,100%{box-shadow:0 12px 28px -8px rgba(37,211,102,0.55);}
+    50%{box-shadow:0 12px 28px -8px rgba(37,211,102,0.85), 0 0 0 8px rgba(37,211,102,0.12);}
+  }
+  .whatsapp-tooltip{
+    position:absolute;right:70px;top:50%;transform:translateY(-50%) translateX(6px);
+    background:var(--ink);color:#fff;font-size:13px;font-weight:500;
+    padding:8px 14px;border-radius:8px;white-space:nowrap;
+    opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;
+  }
+  .whatsapp-fab:hover .whatsapp-tooltip{opacity:1;transform:translateY(-50%) translateX(0);}
+  @media (max-width:640px){
+    .whatsapp-fab{width:52px;height:52px;bottom:18px;right:18px;}
+    .whatsapp-fab svg{width:26px;height:26px;}
+    .whatsapp-tooltip{display:none;}
+  }
+
 </style>
 </head>
-<body>
+<body class="locked">
+
+<div id="intro">
+  <div class="laptop">
+    <div class="laptop-screen">
+      <div class="laptop-cam"></div>
+      <div class="laptop-display">
+        <div class="map-frame">
+          <div class="map-block b1"></div>
+          <div class="map-block b2"></div>
+          <div class="map-block b3"></div>
+          <div class="map-road r1"></div>
+          <div class="map-road r2"></div>
+          <div class="map-road r3"></div>
+          <svg class="map-pin" id="mapPin" viewBox="0 0 26 34" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13,0 C5.8,0 0,5.8 0,13 C0,22.75 13,34 13,34 C13,34 26,22.75 26,13 C26,5.8 20.2,0 13,0 Z" fill="var(--accent)"/>
+            <circle cx="13" cy="13" r="5.2" fill="#fff"/>
+          </svg>
+          <div class="map-pin-shadow" id="mapPinShadow"></div>
+          <div class="listing-card" id="listingCard">
+            <div class="listing-name" id="listingName"></div>
+            <div class="listing-stars" id="listingStars">
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.4l6.4-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.4l6.4-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.4l6.4-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.4l6.4-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.4l6.4-.6z"/></svg>
+            </div>
+            <div class="listing-meta" id="listingMeta">Local business · No website yet</div>
+            <span class="listing-btn" id="listingBtn">🌐 Website</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="laptop-base"></div>
+    <div class="laptop-shadow"></div>
+  </div>
+  <div class="intro-caption">
+    <p id="captionLine1"><span id="captionText1"></span><span class="cursor" id="cursor1"></span></p>
+    <p id="captionLine2"><span id="captionText2"></span></p>
+  </div>
+  <button class="intro-cta" id="introCta">Start now <span aria-hidden="true">→</span></button>
+  <button class="skip" id="skipBtn">skip →</button>
+</div>
 
 <header>
   <nav>
@@ -438,6 +615,68 @@
 </footer>
 
 <script>
+  function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+  async function typeText(el, text, speed){
+    for (let i = 0; i <= text.length; i++){
+      el.textContent = text.slice(0, i);
+      await sleep(speed);
+    }
+  }
+
+  async function runMapIntro(){
+    document.getElementById('mapPin').classList.add('drop');
+    await sleep(500);
+    document.getElementById('mapPinShadow').classList.add('show');
+    await sleep(250);
+
+    document.getElementById('listingCard').classList.add('show');
+    await sleep(400);
+
+    await typeText(document.getElementById('listingName'), 'The Clever Media', 28);
+    await sleep(150);
+
+    const stars = document.querySelectorAll('#listingStars svg');
+    for (const s of stars){ s.classList.add('filled'); await sleep(110); }
+    await sleep(150);
+
+    document.getElementById('listingBtn').classList.add('show');
+  }
+
+  async function runIntro(){
+    await runMapIntro();
+    await sleep(150);
+
+    await typeText(document.getElementById('captionText1'), 'Every business like yours has a website.', 24);
+    document.getElementById('cursor1').style.display = 'none';
+    await sleep(250);
+    await typeText(document.getElementById('captionText2'), 'Yours is still \u201csomeday.\u201d', 24);
+
+    await sleep(350);
+    document.getElementById('introCta').classList.add('ready');
+  }
+
+  function endIntro(){
+    const intro = document.getElementById('intro');
+    if (intro.dataset.done) return;
+    intro.dataset.done = '1';
+    intro.classList.add('leave');
+    document.body.classList.remove('locked');
+    setTimeout(() => { intro.style.display = 'none'; }, 950);
+  }
+
+  document.getElementById('introCta').addEventListener('click', endIntro);
+  document.getElementById('skipBtn').addEventListener('click', endIntro);
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.getElementById('intro').style.display = 'none';
+    document.body.classList.remove('locked');
+  } else {
+    runIntro();
+  }
+</script>
+
+<script>
   // Trust strip: scrolling names
   const names = ['Sunrise Bakery','Willow & Co.','Reyes Plumbing','Iron Row Fitness','Kapoor & Sons','Marina Dental','Harbor Cafe','Root & Bloom'];
   const track = document.getElementById('trustTrack');
@@ -467,6 +706,14 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
+
+<a href="https://wa.me/919999999999?text=Hi!%20I'd%20like%20to%20talk%20about%20a%20project." class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <span class="whatsapp-tooltip">Chat on WhatsApp</span>
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+    <path d="M16 4C9.4 4 4 9.4 4 16c0 2.4.7 4.6 1.9 6.5L4 28l5.7-1.9C11.5 27.3 13.7 28 16 28c6.6 0 12-5.4 12-12S22.6 4 16 4z" fill="none" stroke="#fff" stroke-width="0"/>
+    <path d="M16 4.5C9.7 4.5 4.5 9.7 4.5 16c0 2.3.7 4.5 1.9 6.3L4.7 27l4.9-1.6c1.7 1 3.6 1.6 5.6 1.6h.1c6.3 0 11.5-5.2 11.5-11.5S22.3 4.5 16 4.5zm6.8 16.2c-.3.8-1.6 1.5-2.2 1.6-.6.1-1.3.1-2.1-.1-.5-.1-1.1-.3-1.9-.7-3.3-1.4-5.5-4.8-5.7-5-.2-.2-1.3-1.7-1.3-3.3s.8-2.3 1.1-2.7c.3-.3.6-.4.8-.4h.6c.2 0 .5 0 .7.6.3.6.9 2.1 1 2.2.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.5-.6.6-.2.2-.4.4-.2.7.2.4.9 1.5 2 2.4 1.3 1.2 2.5 1.6 2.9 1.8.4.2.6.1.8-.1.2-.2.9-1 1.1-1.4.2-.4.5-.3.8-.2.3.1 2 .9 2.3 1.1.3.2.5.3.6.4.1.2.1.9-.2 1.7z"/>
+  </svg>
+</a>
 
 </body>
 </html>
