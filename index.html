@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Clever Media — Branding, Web &amp; Digital Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17242f;
+    --gray:#5f6b74;
+    --line:rgba(23,36,47,0.10);
+    --paper:#ffffff;
+    --tint:#f4f7f8;
+    --accent:#4f9db0;
+    --accent-dark:#357687;
+    --accent-tint:#eaf5f7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);
+    line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:3px solid var(--accent-dark);outline-offset:3px;}
+  section{padding:100px 0;}
+  .dash{width:46px;height:3px;background:var(--accent);border-radius:2px;}
+
+  /* ---------- NAV ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1180px;margin:0 auto;}
+  .logo{font-weight:700;font-size:19px;display:flex;align-items:center;gap:8px;}
+  .logo-icon{height:26px;width:auto;display:block;}
+  .nav-links{display:flex;gap:34px;font-size:14.5px;font-weight:500;color:var(--gray);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{font-size:14px;font-weight:600;background:var(--ink);color:#fff;padding:11px 22px;border-radius:100px;transition:background .2s ease;}
+  .nav-cta:hover{background:var(--accent-dark);}
+  @media (max-width:860px){.nav-links{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:96px 32px 80px;text-align:center;overflow:hidden;}
+  .hero::before{
+    content:'';position:absolute;top:-160px;right:-160px;width:480px;height:480px;
+    background:radial-gradient(circle, var(--accent-tint) 0%, transparent 70%);
+    z-index:-1;
+  }
+  .hero::after{
+    content:'';position:absolute;bottom:-200px;left:-200px;width:520px;height:520px;
+    background:radial-gradient(circle, var(--tint) 0%, transparent 70%);
+    z-index:-1;
+  }
+  .hero-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:22px;display:inline-block;}
+  .hero h1{font-size:clamp(34px,5.4vw,58px);font-weight:700;line-height:1.1;max-width:16ch;margin:0 auto 22px;}
+  .hero h1 em{font-style:normal;color:var(--accent);}
+  .hero p.sub{color:var(--gray);font-size:17.5px;max-width:46ch;margin:0 auto 36px;}
+  .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .btn-primary{background:var(--ink);color:#fff;font-weight:600;font-size:15px;padding:15px 30px;border-radius:100px;display:inline-flex;align-items:center;gap:8px;transition:background .2s ease, transform .2s ease;}
+  .btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);}
+  .btn-ghost{font-weight:600;font-size:15px;padding:15px 26px;border-radius:100px;border:1.5px solid var(--line);display:inline-flex;align-items:center;gap:8px;transition:border-color .2s ease;}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  .hero-visual{
+    max-width:820px;margin:52px auto 0;border-radius:20px;overflow:hidden;
+    box-shadow:0 40px 80px -30px rgba(22,18,33,0.25);border:1px solid var(--line);
+  }
+  .hero-visual-bar{display:flex;gap:7px;padding:14px 18px;background:var(--tint);border-bottom:1px solid var(--line);}
+  .hero-visual-bar span{width:9px;height:9px;border-radius:50%;background:var(--line);}
+  .hero-visual-body{padding:52px 40px;background:linear-gradient(155deg,#17242f,var(--ink));color:#fff;text-align:left;}
+  .hero-visual-body .tag{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;display:block;}
+  .hero-visual-body h3{font-size:24px;font-weight:600;max-width:26ch;margin-bottom:10px;}
+  .hero-visual-body p{color:#b7b0c4;font-size:14.5px;max-width:40ch;}
+
+  /* ---------- SECTION HEAD (reusable) ---------- */
+  .sec-head{max-width:56ch;margin:0 auto 60px;text-align:center;}
+  .sec-head .dash{margin:14px auto 0;}
+  .sec-head h2{font-size:clamp(26px,3.6vw,40px);font-weight:700;margin-bottom:0;}
+  .sec-head p{color:var(--gray);font-size:15.5px;margin-top:16px;}
+  .sec-head.left{text-align:left;margin-left:0;}
+  .sec-head.left .dash{margin:14px 0 0;}
+
+  /* ---------- EXPERTISE (alternating rows) ---------- */
+  .expertise-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+    padding:44px 0;border-top:1px solid var(--line);
+  }
+  .expertise-row:last-child{border-bottom:1px solid var(--line);}
+  .expertise-row.reverse{direction:rtl;}
+  .expertise-row.reverse > *{direction:ltr;}
+  .expertise-num{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--accent-dark);margin-bottom:14px;display:block;}
+  .expertise-row h3{font-size:24px;font-weight:700;margin-bottom:6px;}
+  .expertise-row .dash{margin:14px 0 16px;}
+  .expertise-row p{color:var(--gray);font-size:15px;line-height:1.65;max-width:44ch;}
+  .expertise-visual{
+    height:220px;border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;color:#fff;
+  }
+  @media (max-width:820px){
+    .expertise-row, .expertise-row.reverse{grid-template-columns:1fr;direction:ltr;}
+    .expertise-visual{order:-1;}
+  }
+
+  /* ---------- FEATURE STRIP ---------- */
+  .feature-section{background:var(--tint);}
+  .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:70px;}
+  .feature-card{background:var(--paper);padding:34px 28px;}
+  .feature-card h3{font-size:16px;font-weight:600;margin-bottom:12px;}
+  .feature-card .dash{width:30px;margin:0 0 12px;}
+  .feature-card p{font-size:13.5px;color:var(--gray);line-height:1.6;}
+  @media (max-width:820px){.feature-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.feature-grid{grid-template-columns:1fr;}}
+
+  .why-block{max-width:760px;margin:0 auto;text-align:center;}
+  .why-block h2{font-size:clamp(24px,3.2vw,34px);font-weight:700;margin-bottom:16px;}
+  .why-block .dash{margin:0 auto 22px;}
+  .why-block p{color:var(--gray);font-size:15.5px;line-height:1.75;margin-bottom:28px;}
+
+  /* ---------- WORK / PORTFOLIO ---------- */
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .work-card{border-radius:18px;overflow:hidden;border:1px solid var(--line);transition:transform .2s ease, box-shadow .2s ease;}
+  .work-card:hover{transform:translateY(-4px);box-shadow:0 24px 48px -26px rgba(22,18,33,0.25);}
+  .work-image{height:220px;position:relative;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:22px;}
+  .work-pill{position:absolute;top:16px;left:16px;background:rgba(255,255,255,0.92);font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:6px 12px;border-radius:100px;color:var(--ink);}
+  .work-info{padding:22px 24px;background:var(--paper);}
+  .work-info .cat{font-size:12px;color:var(--accent-dark);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.03em;}
+  .work-info h3{font-size:17px;font-weight:600;}
+  @media (max-width:820px){.work-grid{grid-template-columns:1fr;}}
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust-section{text-align:center;padding:70px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .trust-section h3{font-size:16px;font-weight:600;margin-bottom:34px;color:var(--gray);}
+  .trust-track-wrap{overflow:hidden;}
+  .trust-track{display:flex;gap:64px;width:max-content;animation:trust-scroll 28s linear infinite;}
+  @keyframes trust-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .trust-item{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--gray);opacity:.55;white-space:nowrap;}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-section{background:var(--tint);}
+  .testi-carousel{max-width:640px;margin:0 auto;position:relative;min-height:190px;text-align:center;}
+  .testi-slide{position:absolute;inset:0;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .5s ease, transform .5s ease;}
+  .testi-slide.active{opacity:1;transform:translateY(0);pointer-events:auto;}
+  .testi-stars{color:var(--accent);font-size:15px;margin-bottom:14px;letter-spacing:2px;}
+  .testi-quote{font-size:18px;line-height:1.6;margin-bottom:20px;}
+  .testi-name{font-weight:700;font-size:14.5px;}
+  .testi-role{font-size:12.5px;color:var(--gray);}
+  .testi-dots{display:flex;justify-content:center;gap:8px;margin-top:32px;}
+  .testi-dot{width:7px;height:7px;border-radius:50%;background:var(--line);border:none;cursor:pointer;}
+  .testi-dot.active{background:var(--accent);}
+
+  /* ---------- CONTACT / CTA ---------- */
+  .cta-section{background:linear-gradient(155deg,#17242f,var(--ink));color:#fff;border-radius:24px;margin:0 32px;padding:70px 40px;text-align:center;}
+  .cta-section h2{font-size:clamp(26px,3.4vw,38px);font-weight:700;max-width:18ch;margin:0 auto 16px;}
+  .cta-section p{color:#b7b0c4;font-size:15.5px;max-width:44ch;margin:0 auto 32px;}
+  .cta-section .btn-primary{background:var(--accent);}
+  .cta-section .btn-primary:hover{background:#fff;color:var(--ink);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:#c9c3d4;padding:70px 32px 32px;}
+  .footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .footer-brand .logo{color:#fff;margin-bottom:14px;}
+  .footer-brand p{font-size:13.5px;color:#8d86a0;max-width:34ch;}
+  .footer-col h4{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:#8d86a0;margin-bottom:16px;}
+  .footer-col a, .footer-col div{display:block;font-size:14px;padding:5px 0;color:#c9c3d4;}
+  .footer-col a:hover{color:#fff;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;font-size:12.5px;color:#8d86a0;flex-wrap:wrap;gap:12px;}
+  .footer-social{display:flex;gap:14px;}
+  @media (max-width:820px){.footer-top{grid-template-columns:1fr;}}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (max-width:640px){
+    section{padding:70px 0;}
+    .cta-section{margin:0 16px;padding:48px 26px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><img src="owl-mark.png" style="height:28px;width:auto;" alt="">The Clever <span style="color:var(--accent);">Media</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#expertise">Services</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Let's Talk</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <span class="hero-eyebrow">Branding, Web &amp; Digital Marketing</span>
+    <h1>We build brands, <em>online</em> and off.</h1>
+    <p class="sub">Design, websites, content, and marketing that actually work together — not four different vendors who've never talked to each other.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">See the work →</a>
+      <a href="#contact" class="btn-ghost">Start a project</a>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="hero-visual-bar"><span></span><span></span><span></span></div>
+      <div class="hero-visual-body">
+        <span class="tag">Design · Build · Launch</span>
+        <h3>From a blank page to a brand your customers actually recognize</h3>
+        <p>Every project starts with your business, not a template picker.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="expertise">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>What I actually do</h2>
+        <div class="dash"></div>
+        <p>Three things that build on each other, so growth doesn't stop the moment your site goes live.</p>
+      </div>
+
+      <div class="expertise-row reveal">
+        <div>
+          <span class="expertise-num">01</span>
+          <h3>Graphic Design &amp; Branding</h3>
+          <div class="dash"></div>
+          <p>Logos, brand identity, packaging, and print — the visual side of your business, designed to actually match who you are.</p>
+        </div>
+        <div class="expertise-visual" style="background:linear-gradient(135deg,#ff5a36,#d6431f);">Design &amp; Branding</div>
+      </div>
+
+      <div class="expertise-row reverse reveal">
+        <div>
+          <span class="expertise-num">02</span>
+          <h3>Website Design &amp; Build</h3>
+          <div class="dash"></div>
+          <p>A site designed around your actual words and photos — mobile-friendly, fast, and built to make booking or contacting you effortless.</p>
+        </div>
+        <div class="expertise-visual" style="background:linear-gradient(135deg,#2c3f4d,#17242f);">Design &amp; Build</div>
+      </div>
+
+      <div class="expertise-row reveal">
+        <div>
+          <span class="expertise-num">03</span>
+          <h3>Digital Marketing</h3>
+          <div class="dash"></div>
+          <p>SEO, paid ads, and social media handled together — so campaigns support each other instead of competing for the same budget.</p>
+        </div>
+        <div class="expertise-visual" style="background:linear-gradient(135deg,#3f5763,#17242f);">SEO · Ads · Social</div>
+      </div>
+
+      <div class="expertise-row reverse reveal">
+        <div>
+          <span class="expertise-num">04</span>
+          <h3>Content Production</h3>
+          <div class="dash"></div>
+          <p>Product photography, reels, and brand video — the content your site and socials actually need, shot and edited properly.</p>
+        </div>
+        <div class="expertise-visual" style="background:linear-gradient(135deg,#2f6d8f,#17242f);">Photo · Video</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature-section">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Why it works</h2>
+        <div class="dash"></div>
+      </div>
+
+      <div class="feature-grid reveal">
+        <div class="feature-card">
+          <h3>Straight Talk</h3>
+          <div class="dash"></div>
+          <p>Every project starts with a real conversation about your business, not a questionnaire.</p>
+        </div>
+        <div class="feature-card">
+          <h3>One Person, Start to Finish</h3>
+          <div class="dash"></div>
+          <p>No handoffs between departments — the person you talk to is the person building it.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Built to Last</h3>
+          <div class="dash"></div>
+          <p>You own the domain and content from day one, so nothing holds your business hostage.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Real Deadlines</h3>
+          <div class="dash"></div>
+          <p>First draft in about a week, not a vague "we'll be in touch" timeline.</p>
+        </div>
+      </div>
+
+      <div class="why-block reveal">
+        <h2>Why The Clever Media</h2>
+        <div class="dash"></div>
+        <p>Most small businesses don't need a marketing department — they need one person who actually listens, builds it right the first time, and sticks around after launch. That's the whole practice: no account managers, no jargon, no monthly retainer you can't explain to your accountant. Just a site that works, built by someone who answers when you call.</p>
+        <a href="#contact" class="btn-primary">Let's talk →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Work that works</h2>
+        <div class="dash"></div>
+      </div>
+      <div class="work-grid reveal">
+        <div class="work-card">
+          <div class="work-image" style="background:#c9781f;">
+            <span class="work-pill">Bakery</span>
+            Sunrise Bakery
+          </div>
+          <div class="work-info">
+            <div class="cat">Branding · Web</div>
+            <h3>New identity, packaging, and a site to match</h3>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-image" style="background:#7c5cf0;">
+            <span class="work-pill">Salon</span>
+            Willow &amp; Co.
+          </div>
+          <div class="work-info">
+            <div class="cat">Web · Content</div>
+            <h3>New site plus a full photo &amp; reel shoot</h3>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-image" style="background:#2f6d8f;">
+            <span class="work-pill">Trades</span>
+            Reyes Plumbing
+          </div>
+          <div class="work-info">
+            <div class="cat">Web · SEO</div>
+            <h3>Local search visibility from zero to page one</h3>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-image" style="background:#3f8f6f;">
+            <span class="work-pill">Fitness</span>
+            Iron Row Fitness
+          </div>
+          <div class="work-info">
+            <div class="cat">Branding · Ads</div>
+            <h3>Rebrand plus a paid social campaign that filled classes</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-section">
+    <h3>A few businesses that trusted this process</h3>
+    <div class="trust-track-wrap">
+      <div class="trust-track" id="trustTrack"></div>
+    </div>
+  </section>
+
+  <section class="testi-section">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>What clients say</h2>
+        <div class="dash"></div>
+      </div>
+      <div class="testi-carousel reveal">
+        <div class="testi-slide active">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"I didn't have to explain what a bakery needs twice. The site felt like it understood the business already."</p>
+          <div class="testi-name">Renu Kapoor</div>
+          <div class="testi-role">Owner, local bakery</div>
+        </div>
+        <div class="testi-slide">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Our old site hadn't been touched in years. This one was live in under two weeks, and I could actually update it myself."</p>
+          <div class="testi-name">Marcus Reyes</div>
+          <div class="testi-role">Owner, plumbing business</div>
+        </div>
+        <div class="testi-slide">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"No sales pitch, no jargon. Just someone who asked what I needed and built exactly that."</p>
+          <div class="testi-name">Aditi Sharma</div>
+          <div class="testi-role">Owner, salon</div>
+        </div>
+      </div>
+      <div class="testi-dots" id="testiDots"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="cta-section reveal">
+        <h2>Have a project in mind?</h2>
+        <p>Tell me what you need — a message is enough to start. No forms to fill out, no sales call required.</p>
+        <a href="mailto:hello@theclevermedia.com" class="btn-primary">hello@theclevermedia.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo"><img src="owl-mark.png" style="height:44px;width:auto;margin-bottom:10px;" alt="">The Clever <span style="color:var(--accent);">Media</span></div>
+        <p>Branding, websites, content, and marketing for local businesses — designed, built, and run by one person.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#expertise">Graphic Design &amp; Branding</a>
+        <a href="#expertise">Website Design &amp; Build</a>
+        <a href="#expertise">Digital Marketing</a>
+        <a href="#expertise">Content Production</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div>hello@theclevermedia.com</div>
+        <a href="#work">See recent work</a>
+        <a href="#contact">Start a project</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 The Clever Media</span>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Trust strip: scrolling names
+  const names = ['Sunrise Bakery','Willow & Co.','Reyes Plumbing','Iron Row Fitness','Kapoor & Sons','Marina Dental','Harbor Cafe','Root & Bloom'];
+  const track = document.getElementById('trustTrack');
+  const render = names.map(n => `<span class="trust-item">${n}</span>`).join('');
+  track.innerHTML = render + render;
+
+  // Testimonial carousel
+  let testiIndex = 0;
+  const slides = document.querySelectorAll('.testi-slide');
+  const dotsContainer = document.getElementById('testiDots');
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'testi-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => showTesti(i));
+    dotsContainer.appendChild(dot);
+  });
+  function showTesti(i){
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    document.querySelectorAll('.testi-dot').forEach((d, idx) => d.classList.toggle('active', idx === i));
+    testiIndex = i;
+  }
+  setInterval(() => showTesti((testiIndex + 1) % slides.length), 4500);
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
